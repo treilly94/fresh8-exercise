@@ -1,8 +1,10 @@
 import datetime
 import getopt
-import jsonlines
 import os
+import random
 import sys
+
+import jsonlines
 
 
 class Generator:
@@ -31,21 +33,40 @@ class Generator:
             elif opt == "-o":
                 self.output_dir = arg
 
-    def batch_generator(self):
-        self.data = [{"panda": 3}, {"cat": 13}]
+    def record_generator(self, type):
+        record = {}
 
-    def batch_writer(self):
+    def batch_generator(self):
+        data = []
+        for i in range(self.batch_size):
+            r = random.randint(1, 100)
+            if r <= 85:
+                data.append(self.record_generator("Viewed"))
+            elif r <= 90:
+                data.append(self.record_generator("Viewed"))
+                data.append(self.record_generator("Interacted"))
+            elif r <= 95:
+                data.append(self.record_generator("Viewed"))
+                data.append(self.record_generator("Click-Through"))
+            else:
+                data.append(self.record_generator("Viewed"))
+                data.append(self.record_generator("Interacted"))
+                data.append(self.record_generator("Click-Through"))
+
+        return data
+
+    def batch_writer(self, data):
         # Create formatted timestamp
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S-%f')
         # Build file path
         file = os.path.join(self.output_dir, "events-" + timestamp + ".json")
         # Open file and dump json data
         with jsonlines.open(file, mode='w') as writer:
-            writer.write_all(self.data)
+            writer.write_all(data)
 
     def run(self):
-        self.batch_generator()
-        self.batch_writer()
+        data = self.batch_generator()
+        self.batch_writer(data)
 
 
 if __name__ == "__main__":
