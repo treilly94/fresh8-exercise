@@ -39,10 +39,15 @@ class Generator:
 
     def batch_generator(self):
         data = []
+        # repeat for the batch size
         for i in range(self.batch_size):
+            # Generate a random number for the probability
             r = random.randint(1, 100)
+            # Generate a random uuid
             view_id = str(uuid.uuid4())
+            # Get the datetime in a iso format
             time = datetime.datetime.now().isoformat()
+            # Create the records based on the probability of each situation
             if r <= 85:
                 data.append(self.record_generator("Viewed", view_id, time))
             elif r <= 90:
