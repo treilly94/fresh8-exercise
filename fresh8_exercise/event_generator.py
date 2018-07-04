@@ -6,9 +6,6 @@ import sys
 
 
 class Generator:
-    data = [{"cat": 1},
-            {"dog": 30}]
-
     def __init__(self, argv):
         help_string = 'event_generator.py -h <help> -n <number of groups> -b <batch size> ' \
                       '-i <interval> -o <output directory>'
@@ -35,13 +32,14 @@ class Generator:
                 self.output_dir = arg
 
     def batch_generator(self):
-        print("batch generator")
+        self.data = []
+
 
     def batch_writer(self):
         # Create formatted timestamp
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S-%f')
         # Build file path
-        file = os.path.join(self.output_dir, "events" + timestamp + ".json")
+        file = os.path.join(self.output_dir, "events-" + timestamp + ".json")
         # Open file and dump json data
         with open(file, 'w') as outfile:
             json.dump(self.data, outfile)
