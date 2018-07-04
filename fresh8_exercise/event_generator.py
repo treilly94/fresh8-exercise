@@ -3,6 +3,7 @@ import getopt
 import os
 import random
 import sys
+import uuid
 
 import jsonlines
 
@@ -25,33 +26,35 @@ class Generator:
                 print(help_string)
                 sys.exit()
             elif opt == "-n":
-                self.n_groups = arg
+                self.n_groups = int(arg)
             elif opt == "-b":
-                self.batch_size = arg
+                self.batch_size = int(arg)
             elif opt == "-i":
-                self.interval = arg
+                self.interval = int(arg)
             elif opt == "-o":
                 self.output_dir = arg
 
-    def record_generator(self, type):
-        record = {}
+    def record_generator(self, type, id, time):
+        return {"type": type, "data": {"viewId": id, "eventDateTime": time}}
 
     def batch_generator(self):
         data = []
         for i in range(self.batch_size):
             r = random.randint(1, 100)
+            view_id = str(uuid.uuid4())
+            time = str(datetime.datetime.now())
             if r <= 85:
-                data.append(self.record_generator("Viewed"))
+                data.append(self.record_generator("Viewed", view_id, time))
             elif r <= 90:
-                data.append(self.record_generator("Viewed"))
-                data.append(self.record_generator("Interacted"))
+                data.append(self.record_generator("Viewed", view_id, time))
+                data.append(self.record_generator("Interacted", view_id, time))
             elif r <= 95:
-                data.append(self.record_generator("Viewed"))
-                data.append(self.record_generator("Click-Through"))
+                data.append(self.record_generator("Viewed", view_id, time))
+                data.append(self.record_generator("Click-Through", view_id, time))
             else:
-                data.append(self.record_generator("Viewed"))
-                data.append(self.record_generator("Interacted"))
-                data.append(self.record_generator("Click-Through"))
+                data.append(self.record_generator("Viewed", view_id, time))
+                data.append(self.record_generator("Interacted", view_id, time))
+                data.append(self.record_generator("Click-Through", view_id, time))
 
         return data
 
