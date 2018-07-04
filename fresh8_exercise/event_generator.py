@@ -1,0 +1,45 @@
+import getopt
+import sys
+
+
+class Generator:
+    def __init__(self, argv):
+        help_string = 'event_generator.py -h <help> -n <number of groups> -b <batch size> ' \
+                      '-i <interval> -o <output directory>'
+
+        # Get opts and args if available
+        try:
+            opts, args = getopt.getopt(argv, "hn:b:i:o:")
+        except getopt.GetoptError:
+            print(help_string)
+            sys.exit(2)
+
+        # Set args to variables
+        for opt, arg in opts:
+            if opt == '-h':
+                print(help_string)
+                sys.exit()
+            elif opt == "-n":
+                self.n_groups = arg
+            elif opt == "-b":
+                self.batch_size = arg
+            elif opt == "-i":
+                self.interval = arg
+            elif opt == "-o":
+                self.output_dir = arg
+
+    def batch_generator(self):
+        print("batch generator")
+
+    def batch_writer(self):
+        print("batch writer")
+
+    def run(self):
+        self.batch_generator()
+        self.batch_writer()
+
+
+if __name__ == "__main__":
+    print("Event Generator")
+    print(sys.argv[1:])
+    Generator(sys.argv[1:]).run()
