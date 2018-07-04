@@ -3,6 +3,7 @@ import getopt
 import os
 import random
 import sys
+import time
 import uuid
 
 import jsonlines
@@ -73,8 +74,10 @@ class Generator:
             writer.write_all(data)
 
     def run(self):
-        data = self.batch_generator()
-        self.batch_writer(data)
+        for i in range(self.n_groups):
+            data = self.batch_generator()
+            self.batch_writer(data)
+            time.sleep(self.interval)
 
 
 if __name__ == "__main__":
