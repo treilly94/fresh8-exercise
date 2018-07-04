@@ -42,7 +42,7 @@ class Generator:
         for i in range(self.batch_size):
             r = random.randint(1, 100)
             view_id = str(uuid.uuid4())
-            time = str(datetime.datetime.now())
+            time = datetime.datetime.now().isoformat()
             if r <= 85:
                 data.append(self.record_generator("Viewed", view_id, time))
             elif r <= 90:
