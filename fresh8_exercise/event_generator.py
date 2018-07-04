@@ -1,8 +1,14 @@
+import datetime
 import getopt
+import json
+import os
 import sys
 
 
 class Generator:
+    data = [{"cat": 1},
+            {"dog": 30}]
+
     def __init__(self, argv):
         help_string = 'event_generator.py -h <help> -n <number of groups> -b <batch size> ' \
                       '-i <interval> -o <output directory>'
@@ -32,7 +38,13 @@ class Generator:
         print("batch generator")
 
     def batch_writer(self):
-        print("batch writer")
+        # Create formatted timestamp
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S-%f')
+        # Build file path
+        file = os.path.join(self.output_dir, "events" + timestamp + ".json")
+        # Open file and dump json data
+        with open(file, 'w') as outfile:
+            json.dump(self.data, outfile)
 
     def run(self):
         self.batch_generator()
