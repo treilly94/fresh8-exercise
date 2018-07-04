@@ -1,6 +1,6 @@
 import datetime
 import getopt
-import json
+import jsonlines
 import os
 import sys
 
@@ -32,8 +32,7 @@ class Generator:
                 self.output_dir = arg
 
     def batch_generator(self):
-        self.data = []
-
+        self.data = [{"panda": 3}, {"cat": 13}]
 
     def batch_writer(self):
         # Create formatted timestamp
@@ -41,8 +40,8 @@ class Generator:
         # Build file path
         file = os.path.join(self.output_dir, "events-" + timestamp + ".json")
         # Open file and dump json data
-        with open(file, 'w') as outfile:
-            json.dump(self.data, outfile)
+        with jsonlines.open(file, mode='w') as writer:
+            writer.write_all(self.data)
 
     def run(self):
         self.batch_generator()
