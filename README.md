@@ -19,6 +19,17 @@ And can be run in the following ways
 Open a terminal in the directory containing the event_generator.py file.  
 In an appropriate python environment run a command like the below example:
 ```shell
-python event_generator.py -n 3 -i 10 -b 30 -o /home/data
+python event_generator.py -n 3 -i 10 -b 30 -o /home/data/
 ```
 ### event_aggregator
+The event_aggregator takes the following runtime arguments:  
+* -d The directory of the files
+* -h Help (Optional)
+
+And can be run in the following ways, and will continue to run until interrupted (for example using Control-C) 
+#### From file
+Open a terminal in the directory containing the event_aggregator.py file.  
+In an appropriate python environment run a command like the below example:
+```shell
+python event_aggregator.py -d /home/data/
+```
