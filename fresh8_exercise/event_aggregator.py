@@ -31,6 +31,7 @@ class Aggregator:
                         self.data.append(obj)
 
     def stats_generator(self):
+        # Create pandas dataframe
         self.df = pd.DataFrame(self.data)
         # Total each event type
         counts = self.df["type"].groupby(self.df["type"]).count()
