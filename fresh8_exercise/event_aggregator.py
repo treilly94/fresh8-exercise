@@ -8,7 +8,15 @@ import pandas as pd
 
 
 class Aggregator:
+    """This class produces a running total of the types of events in a directory"""
+
     def __init__(self, argv):
+        """
+        This method initialises the class variables
+
+        :param argv: List[String] - The runtime arguments
+        """
+
         self.path = None  # The path to the data directory
         self.files = []  # List of files already processed
         self.data = []  # The raw data before it is converted to a pandas dataframe
@@ -18,6 +26,12 @@ class Aggregator:
         self.get_args(argv)
 
     def get_args(self, argv):
+        """
+        This method parses the runtime arguments
+
+        :param argv: List[String] - The runtime arguments
+        """
+
         help_string = 'event_aggregator.py -h <help> -d <directory>'
         # Get opts and args if available
         try:
@@ -35,6 +49,11 @@ class Aggregator:
                 self.path = arg
 
     def file_reader(self):
+        """
+        This method reads all of the files in a directory and extracts the jsonlines data into a
+        list of dictionaries
+        """
+
         # Get list of files in directory
         new_files = os.listdir(self.path)
 
@@ -51,12 +70,15 @@ class Aggregator:
                         self.data.append(obj)
 
     def stats_generator(self):
+        """This method converts the list of dictionaries into a pandas dataframe then produces a count for each type"""
+
         # Create pandas dataframe
         self.df = pd.DataFrame(self.data)
         # Total each event type
         self.counts = self.df["type"].groupby(self.df["type"]).count()
 
     def run(self):
+        """This method reads the data, produces the statistics, and prints them once every 5 seconds"""
         # Run forever
         while True:
             self.file_reader()
