@@ -2,7 +2,13 @@
 This project contains a solution to the Fresh8 data-engineer challenge written in python 3.6
 
 ## Running the tests
-
+The tests are written using the unittest library and can be called in the below way. 
+ 
+Navigate into the project directory (the one containing the test folder) and run the below command in an 
+appropriate python environment
+```shell
+python -m unittest
+```
 ## Installing the package
 
 ## Running the package
