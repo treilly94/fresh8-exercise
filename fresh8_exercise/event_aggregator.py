@@ -8,14 +8,16 @@ import pandas as pd
 
 
 class Aggregator:
-    data = []
-    df = None
-    # List of files already processed
-    files = []
-
     def __init__(self, argv):
-        help_string = 'event_aggregator.py -h <help> -d <directory>'
+        self.data = []  # The raw data before it is converted to a pandas dataframe
+        self.df = None  # The pandas dataframe
+        self.files = []  # List of files already processed
+        self.path = None  # The path to the data directory
 
+        self.get_args(argv)
+
+    def get_args(self, argv):
+        help_string = 'event_aggregator.py -h <help> -d <directory>'
         # Get opts and args if available
         try:
             opts, args = getopt.getopt(argv, "hd:")
