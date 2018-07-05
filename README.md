@@ -15,7 +15,7 @@ The event generator takes the following runtime arguments:
 * -h Help (Optional)
 
 And can be run in the following ways
-####From file
+#### From file
 Open a terminal in the directory containing the event_generator.py file.  
 In an appropriate python environment run a command like the below example:
 ```shell
