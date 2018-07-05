@@ -1,4 +1,6 @@
+import getopt
 import os
+import sys
 import time
 
 import jsonlines
@@ -11,8 +13,23 @@ class Aggregator:
     # List of files already processed
     files = []
 
-    def __init__(self, path):
-        self.path = path
+    def __init__(self, argv):
+        help_string = 'event_aggregator.py -h <help> -d <directory>'
+
+        # Get opts and args if available
+        try:
+            opts, args = getopt.getopt(argv, "hd:")
+        except getopt.GetoptError:
+            print(help_string)
+            sys.exit(2)
+
+        # Set args to variables
+        for opt, arg in opts:
+            if opt == '-h':
+                print(help_string)
+                sys.exit()
+            elif opt == "-d":
+                self.path = arg
 
     def file_reader(self):
         # Get list of files in directory
@@ -49,4 +66,5 @@ class Aggregator:
 
 if __name__ == "__main__":
     print("Event Aggregator")
-    Aggregator("/home/treilly/Documents/projects/fresh8-exercise/data/").run()
+    print(sys.argv[1:])
+    Aggregator(sys.argv[1:]).run()
