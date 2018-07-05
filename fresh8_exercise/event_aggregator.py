@@ -1,4 +1,5 @@
 import os
+import time
 
 import jsonlines
 import pandas as pd
@@ -38,9 +39,12 @@ class Aggregator:
 
     def run(self):
         # Run every 5 seconds
-        self.file_reader()
-        self.stats_generator()
+        while True:
+            self.file_reader()
+            self.stats_generator()
+            time.sleep(5)
 
 
 if __name__ == "__main__":
     print("Event Aggregator")
+    Aggregator("/home/treilly/Documents/projects/fresh8-exercise/data/").run()
