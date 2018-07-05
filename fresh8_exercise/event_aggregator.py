@@ -9,10 +9,11 @@ import pandas as pd
 
 class Aggregator:
     def __init__(self, argv):
+        self.path = None  # The path to the data directory
+        self.files = []  # List of files already processed
         self.data = []  # The raw data before it is converted to a pandas dataframe
         self.df = None  # The pandas dataframe
-        self.files = []  # List of files already processed
-        self.path = None  # The path to the data directory
+        self.counts = None  # The aggregated dataframe
 
         self.get_args(argv)
 
@@ -53,16 +54,17 @@ class Aggregator:
         # Create pandas dataframe
         self.df = pd.DataFrame(self.data)
         # Total each event type
-        counts = self.df["type"].groupby(self.df["type"]).count()
-        # Print to terminal
-        print("============================")
-        print(counts)
+        self.counts = self.df["type"].groupby(self.df["type"]).count()
 
     def run(self):
-        # Run every 5 seconds
+        # Run forever
         while True:
             self.file_reader()
             self.stats_generator()
+            # Print to terminal
+            print("============================")
+            print(self.counts)
+            # Wait 5 seconds
             time.sleep(5)
 
 
