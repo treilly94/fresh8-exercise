@@ -35,6 +35,7 @@ class Aggregator:
         # Total each event type
         counts = self.df["type"].groupby(self.df["type"]).count()
         # Print to terminal
+        print("============================")
         print(counts)
 
     def run(self):
