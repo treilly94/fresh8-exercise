@@ -1,10 +1,12 @@
 import os
 
 import jsonlines
+import pandas as pd
 
 
 class Aggregator:
     data = []
+    df = None
     # List of files already processed
     files = []
 
@@ -27,15 +29,17 @@ class Aggregator:
                     for obj in reader:
                         self.data.append(obj)
 
-        # Read each file not already read in
-    #
-    # def stats_generator(self):
-    #     # Total each event type
-    #
-    #     # Print to terminal
-    #
-    # def run(self):
-    #     # Run every 5 seconds
+    def stats_generator(self):
+        self.df = pd.DataFrame(self.data)
+        # Total each event type
+        counts = self.df["type"].groupby(self.df["type"]).count()
+        # Print to terminal
+        print(counts)
+
+    def run(self):
+        # Run every 5 seconds
+        self.file_reader()
+        self.stats_generator()
 
 
 if __name__ == "__main__":
