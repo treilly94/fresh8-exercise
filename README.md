@@ -1,6 +1,19 @@
 # fresh8-exercise
 This project contains a solution to the Fresh8 data-engineer challenge written in python 3.6
 
+## Setting up the environment 
+This package needs to be run on a python 3.6 environment with the requirements found in the requirements.txt  
+A clean python environment can be created either using the [venv package](https://docs.python.org/3/tutorial/venv.html) 
+or [docker](https://www.docker.com). I used the below command to generate a interactive docker container:
+```shell
+docker run -it --name fresh8 --rm -v <path to local fresh8-exercise>:/fresh8-exercise/ python /bin/bash
+``` 
+
+Within the container you can then cd into the fresh8-exercise directory and install the requirements using  
+```shell
+pip install -r requirements.txt 
+```
+
 ## Running the tests
 The tests are written using the unittest library and can be called in the below way. 
  
@@ -9,22 +22,8 @@ appropriate python environment
 ```shell
 python -m unittest
 ```
-## Installing the package
 
 ## Running the package
-### Environment 
-This package needs to be run on a python 3.6 environment with the requirements found in the requirements.txt  
-A clean python environment can be created either using the [venv package](https://docs.python.org/3/tutorial/venv.html) 
-or [docker](https://www.docker.com). I used the below command to generate a interactive docker container:
-```shell
-docker run -it --name fresh8 --rm -v <path to local fresh8-exercise>:/fresh8-exercise/ python /bin/bash
-``` 
-
-You can then cd into the directory and install the requirements using  
-```shell
-pip install -r requirements.txt 
-```
-
 ### event_generator
 The event generator takes the following runtime arguments:  
 * -n Number of files 
