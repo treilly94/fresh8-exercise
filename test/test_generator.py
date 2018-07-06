@@ -23,6 +23,6 @@ class TestGenerator(TestCase):
         size_click = len([d for d in output if d['type'] == "Click-Through"])
 
         self.assertEqual(size_viewed, 1000)
-        self.assertAlmostEqual(size_interacted, 100, delta=10)
-        self.assertAlmostEqual(size_click, 100, delta=10)
+        self.assertAlmostEqual(size_interacted, 100, delta=20)
+        self.assertAlmostEqual(size_click, 100, delta=20)
 
