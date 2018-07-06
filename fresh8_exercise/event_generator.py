@@ -20,7 +20,7 @@ class Generator:
         self.n_groups = 1
         self.batch_size = 1
         self.interval = 1
-        self.output_dir = os.getcwd() + "data/"
+        self.output_dir = os.getcwd() + "/data/"
 
         self.get_args(argv)
 
