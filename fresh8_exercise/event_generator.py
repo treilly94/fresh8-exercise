@@ -47,20 +47,20 @@ class Generator:
             # Generate a random uuid
             view_id = str(uuid.uuid4())
             # Get the datetime in a iso format
-            time = datetime.datetime.now().isoformat()
+            current_time = datetime.datetime.now().isoformat()
             # Create the records based on the probability of each situation
             if r <= 85:
-                data.append(self.record_generator("Viewed", view_id, time))
+                data.append(self.record_generator("Viewed", view_id, current_time))
             elif r <= 90:
-                data.append(self.record_generator("Viewed", view_id, time))
-                data.append(self.record_generator("Interacted", view_id, time))
+                data.append(self.record_generator("Viewed", view_id, current_time))
+                data.append(self.record_generator("Interacted", view_id, current_time))
             elif r <= 95:
-                data.append(self.record_generator("Viewed", view_id, time))
-                data.append(self.record_generator("Click-Through", view_id, time))
+                data.append(self.record_generator("Viewed", view_id, current_time))
+                data.append(self.record_generator("Click-Through", view_id, current_time))
             else:
-                data.append(self.record_generator("Viewed", view_id, time))
-                data.append(self.record_generator("Interacted", view_id, time))
-                data.append(self.record_generator("Click-Through", view_id, time))
+                data.append(self.record_generator("Viewed", view_id, current_time))
+                data.append(self.record_generator("Interacted", view_id, current_time))
+                data.append(self.record_generator("Click-Through", view_id, current_time))
 
         return data
 
