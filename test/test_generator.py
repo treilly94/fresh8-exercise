@@ -15,10 +15,14 @@ class TestGenerator(TestCase):
         self.assertEqual(output, expected)
 
     def test_batch_generator(self):
-        self.fail()
+        # This test passes most of the time but because of the nature of random numbers it may occasionally fail
+        self.g.batch_size = 1000
+        output = self.g.batch_generator()
+        size_viewed = len([d for d in output if d['type'] == "Viewed"])
+        size_interacted = len([d for d in output if d['type'] == "Interacted"])
+        size_click = len([d for d in output if d['type'] == "Click-Through"])
 
-    def test_batch_writer(self):
-        self.fail()
+        self.assertEqual(size_viewed, 1000)
+        self.assertAlmostEqual(size_interacted, 100, delta=10)
+        self.assertAlmostEqual(size_click, 100, delta=10)
 
-    def test_run(self):
-        self.fail()
