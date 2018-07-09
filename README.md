@@ -66,6 +66,7 @@ In an appropriate python environment run a command like the below example:
 python event_aggregator.py -d /home/data/
 ```
 ## Improvements
+* Make the generator app take full commands e.g. --number-of-groups not -n
 * More unit tests
 * Make the print in the agg stage a bit nicer 
 * Package and put on [test.pypi.org](https://test.pypi.org/)
