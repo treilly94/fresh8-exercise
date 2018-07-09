@@ -34,9 +34,13 @@ python -m unittest
 ### event_generator
 The event generator takes the following runtime arguments:  
 * -n Number of files 
+    * Defaults to 1
 * -i Number of seconds between files 
+    * Defaults to 1
 * -b Number of events in a file
+    * Defaults to 1
 * -o Output directory
+    * Defaults to the cwd /data/
 * -h Help (Optional)
 
 And can be run in the following ways
