@@ -64,5 +64,6 @@ python event_aggregator.py -d /home/data/
 ```
 ## Improvements
 * More unit tests
+* Make the print in the agg stage a bit nicer 
 * Package and put on [test.pypi.org](https://test.pypi.org/)
 * Look into making it conform to the structure outlined [here](http://python-packaging.readthedocs.io/en/latest/command-line-scripts.html)
