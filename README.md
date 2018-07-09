@@ -30,6 +30,9 @@ appropriate python environment
 python -m unittest
 ```
 
+If you're running the tests in a ide such as intellij you may need to configure the working directory to be in 
+*fresh8-exercise/* not *fresh8-exercise/test/* as it will cause issues with the relative file paths. 
+
 ## Running the package
 ### event_generator
 The event generator takes the following runtime arguments:  

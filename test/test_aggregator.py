@@ -5,7 +5,7 @@ from fresh8_exercise.event_aggregator import Aggregator
 
 class TestAggregator(TestCase):
     def setUp(self):
-        self.a = Aggregator(["-d", "./resources/"])
+        self.a = Aggregator(["-d", "./test/resources/"])
 
     def test_file_reader(self):
         self.a.file_reader()
