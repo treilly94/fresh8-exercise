@@ -6,8 +6,15 @@ This package needs to be run on a python 3.6 environment with the requirements f
 A clean python environment can be created either using the [venv package](https://docs.python.org/3/tutorial/venv.html) 
 or [docker](https://www.docker.com). I used the below command to generate a interactive docker container:
 ```shell
-docker run -it --name fresh8 --rm -v <path to local fresh8-exercise>:/fresh8-exercise/ python /bin/bash
+docker run -it -d --name fresh8 --rm -v <path to local fresh8-exercise>:/fresh8-exercise/ python:3.6.6-jessie
+
 ``` 
+One or more connections can then be made to the terminal using the below command:
+```shell
+docker exec -it <container name> bash
+```
+Using this method will allow you to have one terminal running each method at the same time.  
+
 
 Within the container you can then cd into the fresh8-exercise directory and install the requirements using  
 ```shell
@@ -51,3 +58,7 @@ In an appropriate python environment run a command like the below example:
 ```shell
 python event_aggregator.py -d /home/data/
 ```
+## Improvements
+* More unit tests
+* Package and put on [test.pypi.org](https://test.pypi.org/)
+* Look into making it conform to the structure outlined [here](http://python-packaging.readthedocs.io/en/latest/command-line-scripts.html)
