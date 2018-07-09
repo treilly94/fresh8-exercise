@@ -112,6 +112,10 @@ class Generator:
 
         :param data: List[Dictionary] - The data to be written
         """
+        # Check path exists
+        if not os.path.exists(self.output_dir):
+            print("path doesn't exist. trying to make")
+            os.makedirs(self.output_dir)
         # Create formatted timestamp
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S-%f')
         # Build file path
